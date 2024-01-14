@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #eed9c4;
+      color: #000000;
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    button {
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- First Survey -->
+<div id="surveyPart1">
+  <h2>Shabooth Survey!</h2>
+  <label for="name">Enter your name:</label>
+  <input type="text" id="name" />
+  <button onclick="onSurveyButtonClicked()">Done!</button>
+</div>
+
+<div id="surveyPart2" style="display: none;">
+  <h2>Are you ready? Type 'yes'</h2>
+  <input type="text" id="readyInput" />
+  <button onclick="onReadyButtonClicked()">Proceed</button>
+</div>
+
+<div id="surveyPart3" style="display: none;">
+  <h2>Kino</h2>
+  <p id="message">Hi! I hope you have a great day!</p>
+  <button onclick="onMessageConfirmClicked()">Continue</button>
+</div>
+
+<div id="confirmPart" style="display: none;">
+  <h2>HI KINOO!</h2>
+  <p id="typingEffect"></p>
+</div>
+
+<div id="userMessagePart" style="display: none;">
+  <h2>Type your message:</h2>
+  <textarea id="userMessage"></textarea>
+  <button onclick="onUserMessageButtonClicked()">Done!</button>
+</div>
+
+<!-- Clear Screen for New Survey -->
+<div id="clearScreen" style="display: none;">
+  <h2>Welcome to the New Survey!</h2>
+  <button onclick="onNewSurveyStart()">Start Survey</button>
+</div>
+
+<script>
+  var i = 0;
+  var txt = 'Hi Kino,\n\nNgayon lang ako nagkaroon ng lakas ng loob na sabihin tong mga to pero obvious naman siguro……........ I\'m admiring you and I\'m expressing my feelings para aware ka. Alam mo ba? Syempre di pa! Ang tagal kong tinago yung feelings ko sayo kasi nahihiya ako. Bakit ganon? Story time ba? HAHA\n\nOnce upon a time, there was a boy who was starstruck by a simple girl. HAHAHAHA lala......................... Nag-umpisa noong online class HAHAHAHAHAA naging idol kita simula noon, grabe! Amazed na amazed ako sayo HAHAHA napafocus ako sa acads, matic! Then, there are chances na yung ginagawa mo, ay gusto ko ding gawin, like mag piano (idol na naman kita dito). Tapos ikaw rin dahilan bakit ako active sa twitter, insta, at tiktok. Syempre, dapat una ako mag heheart HAHAHAHAHAHA I feel like I\'m the first honor jk. Grabe! 1st time ako umamin ng feelings since wala naman mawawala pag-nagtry diba?\n\nSo, eto na nga. Straight to the point na.………………………..\n\nI like you Kino and if given the chance, I want to express it more to you. Kaya din nagtagal kasi nag-iisip ako kung paano ko sasabihin sayo and when will be the perfect time, then naisip kong mag-coding since I can\'t forget that you asked for help tungkol dito and hindi ako nagdalawang isip na tulungan ka. \n\nSo yun, thanks for being my inspiration. I will not expect in return, but I just want to express it. \n\nThanks, Kino!\n\nAlways admiring you,\n\nEser'; /* The text */
+  var speed = 60; /* The speed/duration of the effect in milliseconds */
+
+  function typeWriter() {
+    if (i < txt.length) {
+      document.getElementById("typingEffect").innerHTML += txt.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    }
+  }
+
+  function onSurveyButtonClicked() {
+    var name = document.getElementById('name').value;
+    alert('Nice one\nHello, ' + name + '!');
+    document.getElementById('surveyPart1').style.display = 'none';
+    document.getElementById('surveyPart2').style.display = 'block';
+  }
+
+  function onReadyButtonClicked() {
+    var userResponse = document.getElementById('readyInput').value;
+    if (userResponse.toLowerCase() === 'yes') {
+      alert('Proceeding to the next part...');
+      document.getElementById('surveyPart2').style.display = 'none';
+      document.getElementById('surveyPart3').style.display = 'block';
+    } else {
+      alert('Please type "yes" to proceed.');
+    }
+  }
+
+  function onMessageConfirmClicked() {
+    document.getElementById('surveyPart3').style.display = 'none';
+    document.getElementById('confirmPart').style.display = 'block';
+    typeWriter(); // Start the typing effect
+  }
+
+  function onConfirmButtonClicked() {
+    var confirmResponse = document.getElementById('confirmInput').value;
+    if (confirmResponse.toLowerCase() === 'yes') {
+      document.getElementById('confirmPart').style.display = 'none';
+      document.getElementById('userMessagePart').style.display = 'block';
+    } else {
+      alert('Please type "yes" to confirm.');
+    }
+  }
+
+</script>
+
+</body>
+</html>
